@@ -19,6 +19,16 @@ class User(Base):
     posts = relationship('Post', backref='user')
     comments = relationship('Comment', backref='user')
     likes = relationship('Like', backref='user')
+    followers = relationship(
+        'Follower', 
+        foreign_keys='Follower.followed_id',
+        backref='followee'
+    )
+    followees = relationship(
+        'Follower', 
+        foreign_keys='Follower.follower_id',
+        backref='follower'
+    )
 
 class Post(Base):
     __tablename__ = 'post'
