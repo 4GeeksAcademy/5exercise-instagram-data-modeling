@@ -45,7 +45,14 @@ class Like(Base):
     user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
     post_id = Column(Integer, ForeignKey('post.id'), nullable=False)
     creation_date = Column(DateTime, nullable=False)
-    
+
+class Follower(Base):
+    __tablename__ = 'follower'
+    id = Column(Integer, primary_key=True)
+    follower_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    followed_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    creation_date = Column(DateTime, nullable=False)
+        
 ## Draw from SQLAlchemy base
 try:
     result = render_er(Base, 'diagram.png')
